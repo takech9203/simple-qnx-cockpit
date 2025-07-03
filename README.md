@@ -15,6 +15,8 @@ This project showcases a minimal yet functional vehicle dashboard with basic spe
 ## Features
 - Real-time speed display with ASCII progress bar
 - Animated speed simulation (0-120 km/h)
+- Color-coded fuel gauge display with dynamic consumption based on speed
+- Low fuel warnings and vehicle slowdown when fuel is empty
 - Status indicators (PARKED, CITY, HIGHWAY, HIGH SPEED)
 - Auto-exit after 20 seconds
 - Cross-platform support (Linux/QNX)
@@ -91,9 +93,15 @@ export TARGET_PATH=/tmp         # Deployment directory on target
 The cockpit simulation runs for exactly 20 seconds, displaying:
 1. **Speed progression**: 0 → 120 km/h → 0 km/h in simple increments
 2. **Visual speed meter**: ASCII progress bar showing current speed
-3. **Status indicators**: PARKED → CITY → HIGHWAY → HIGH SPEED based on current speed
-4. **Countdown timer**: Shows remaining runtime
-5. **Automatic exit**: Clean shutdown after 20 seconds
+3. **Fuel gauge**: Color-coded ASCII progress bar showing remaining fuel level (decreases faster at higher speeds)
+   - Green: Normal fuel level (>25%)
+   - Yellow: Medium-low fuel level (11-25%)
+   - Red: Low fuel level (≤10%)
+4. **Fuel warnings**: "LOW" warning when fuel is below 10%, "FUEL EMPTY" when depleted
+5. **Vehicle behavior**: Speed automatically decreases when fuel is empty
+6. **Status indicators**: PARKED → CITY → HIGHWAY → HIGH SPEED based on current speed
+7. **Countdown timer**: Shows remaining runtime
+8. **Automatic exit**: Clean shutdown after 20 seconds
 
 ## Troubleshooting
 - **QNX connection issues**: Verify TARGET_IP and SSH access
